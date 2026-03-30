@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSecure - My Orders</title>
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        .orders-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .orders-header {
+            margin-bottom: 30px;
+        }
+        
+        .orders-header h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .order-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        
+        .order-card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .order-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .order-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .order-date {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .order-status {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-processing {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-shipped {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .status-delivered {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .order-body {
+            padding: 20px;
+        }
+        
+        .order-items {
+            margin-bottom: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .order-item-image {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary-color));
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .order-item-details {
+            flex: 1;
+        }
+        
+        .order-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .order-item-meta {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+        
+        .order-item-price {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .order-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .order-total {
+            font-size: 1.2rem;
+        }
+        
+        .order-total span {
+            color: var(--gray-color);
+        }
+        
+        .order-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-sm {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .empty-orders {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--gray-color);
+        }
+        
+        .empty-orders-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+        
+        .track-modal-content {
+            max-width: 400px;
+        }
+        
+        .tracking-timeline {
+            margin: 20px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 35px;
+            width: 2px;
+            height: calc(100% + 10px);
+            background: var(--border-color);
+        }
+        
+        .timeline-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            z-index: 1;
+        }
+        
+        .timeline-dot.completed {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .timeline-dot.active {
+            background: var(--primary-color);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .timeline-content h4 {
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content p {
+            font-size: 0.85rem;
+            color: var(--gray-color);
+        }
+        
+        .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(87, 197, 182, 0.1);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="shop-header">
+        <div class="nav-container">
+            <div class="nav-logo">🔒 ShopSecure</div>
+            
+            <nav class="nav-links">
+                <a href="shop.html">Shop</a>
+                <a href="orders.html" class="active">My Orders</a>
+                <a href="#" onclick="becomeVendor()">Sell on ShopSecure</a>
+                
+                <div class="cart-icon" onclick="window.location.href='shop.html'">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                
+                <div class="user-menu">
+                    <span id="userName">👤 My Account</span>
+                    <div class="user-dropdown">
+                        <a href="orders.html">📦 My Orders</a>
+                        <a href="#" onclick="showPrivacySettings()">🔒 Privacy Settings</a>
+                        <a href="#" onclick="logout()">🚪 Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="orders-container">
+        <div class="orders-header">
+            <h1>📦 My Orders</h1>
+            <p style="color: var(--gray-color);">
+                View your order history and track deliveries. 
+                <span class="privacy-badge">🔒 End-to-end encrypted</span>
+            </p>
+        </div>
+        
+        <div id="ordersList">
+            <!-- Orders will be loaded here -->
+            <div class="spinner"></div>
+        </div>
+    </main>
+
+    <!-- Track Order Modal -->
+    <div class="modal hidden" id="trackModal">
+        <div class="modal-content track-modal-content">
+            <span class="close-btn" onclick="closeTrackModal()">&times;</span>
+            <h2>📍 Track Order</h2>
+            <p style="color: var(--gray-color); margin-bottom: 20px;" id="trackOrderNumber"></p>
+            
+            <div class="tracking-timeline" id="trackingTimeline">
+                <!-- Timeline items will be inserted here -->
+            </div>
+            
+            <button class="btn btn-primary btn-full" onclick="closeTrackModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Privacy Settings Modal (reused from shop) -->
+    <div class="modal hidden" id="privacySettingsModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-btn" onclick="closePrivacySettings()">&times;</span>
+            <h2>🔒 Privacy Settings</h2>
+            
+            <div style="margin: 20px 0;">
+                <h3>Data Control</h3>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <p style="margin-bottom: 10px;"><strong>Download My Data</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--gray-color); margin-bottom: 10px;">
+                        Get a copy of all your personal data we store.
+                    </p>
+                    <button class="btn" style="background: var(--primary-color); color: white;" onclick="downloadMyData()">
+                        Request Data Export
+                    </button>
+                </div>
+                
+                <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid var(--warning-color);">
+                    <p style="margin-bottom: 10px;"><strong>Delete My Account</strong></p>
+                    <p style="font-size: 0.9rem; color: var(--gray-color); margin-bottom: 10px;">
+                        Permanently delete your account and all associated data.
+                    </p>
+                    <button class="btn" style="background: var(--danger-color); color: white;" onclick="deleteAccount()">
+                        Request Account Deletion
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/orders.js"></script>
+</body>
+</html>
