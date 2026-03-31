@@ -6,13 +6,12 @@
     <title>ShopSecure - Marketplace</title>
     <link rel="stylesheet" href="css/main.css">
     <style>
-        /* Additional shop-specific styles */
         .search-bar {
             display: flex;
             gap: 10px;
             margin-bottom: 30px;
         }
-        
+
         .search-input {
             flex: 1;
             padding: 12px 20px;
@@ -20,7 +19,7 @@
             border-radius: var(--radius);
             font-size: 1rem;
         }
-        
+
         .search-btn {
             padding: 12px 25px;
             background: var(--primary-color);
@@ -30,14 +29,14 @@
             cursor: pointer;
             font-weight: 600;
         }
-        
+
         .category-filters {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
-        
+
         .category-btn {
             padding: 8px 20px;
             border: 2px solid var(--border-color);
@@ -46,14 +45,14 @@
             cursor: pointer;
             transition: var(--transition);
         }
-        
+
         .category-btn.active,
         .category-btn:hover {
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
         }
-        
+
         .cart-sidebar {
             position: fixed;
             top: 0;
@@ -67,11 +66,11 @@
             display: flex;
             flex-direction: column;
         }
-        
+
         .cart-sidebar.open {
             right: 0;
         }
-        
+
         .cart-header {
             padding: 20px;
             border-bottom: 1px solid var(--border-color);
@@ -79,20 +78,20 @@
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .cart-items {
             flex: 1;
             overflow-y: auto;
             padding: 20px;
         }
-        
+
         .cart-item {
             display: flex;
             gap: 15px;
             padding: 15px;
             border-bottom: 1px solid var(--border-color);
         }
-        
+
         .cart-item-image {
             width: 80px;
             height: 80px;
@@ -104,28 +103,28 @@
             color: white;
             font-size: 2rem;
         }
-        
+
         .cart-item-details {
             flex: 1;
         }
-        
+
         .cart-item-title {
             font-weight: 600;
             margin-bottom: 5px;
         }
-        
+
         .cart-item-price {
             color: var(--primary-color);
             font-weight: bold;
         }
-        
+
         .quantity-control {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-top: 10px;
         }
-        
+
         .qty-btn {
             width: 30px;
             height: 30px;
@@ -134,13 +133,13 @@
             cursor: pointer;
             border-radius: 4px;
         }
-        
+
         .cart-footer {
             padding: 20px;
             border-top: 1px solid var(--border-color);
             background: #f8f9fa;
         }
-        
+
         .cart-total {
             display: flex;
             justify-content: space-between;
@@ -148,7 +147,7 @@
             font-weight: bold;
             margin-bottom: 15px;
         }
-        
+
         .checkout-btn {
             width: 100%;
             padding: 15px;
@@ -160,7 +159,7 @@
             font-weight: 600;
             cursor: pointer;
         }
-        
+
         .overlay {
             position: fixed;
             top: 0;
@@ -171,15 +170,15 @@
             display: none;
             z-index: 999;
         }
-        
+
         .overlay.show {
             display: block;
         }
-        
+
         .user-menu {
             position: relative;
         }
-        
+
         .user-dropdown {
             position: absolute;
             top: 100%;
@@ -191,11 +190,11 @@
             min-width: 200px;
             display: none;
         }
-        
+
         .user-menu:hover .user-dropdown {
             display: block;
         }
-        
+
         .user-dropdown a {
             display: block;
             padding: 10px 20px;
@@ -203,11 +202,11 @@
             text-decoration: none;
             transition: background 0.2s;
         }
-        
+
         .user-dropdown a:hover {
             background: #f8f9fa;
         }
-        
+
         @media (max-width: 768px) {
             .cart-sidebar {
                 width: 100%;
@@ -217,21 +216,20 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <header class="shop-header">
         <div class="nav-container">
             <div class="nav-logo">🔒 ShopSecure</div>
-            
+
             <nav class="nav-links">
                 <a href="shop.html" class="active">Shop</a>
                 <a href="orders.html">My Orders</a>
                 <a href="#" onclick="becomeVendor()">Sell on ShopSecure</a>
-                
+
                 <div class="cart-icon" onclick="toggleCart()">
                     🛒
                     <span class="cart-count" id="cartCount">0</span>
                 </div>
-                
+
                 <div class="user-menu">
                     <span id="userName">👤 My Account</span>
                     <div class="user-dropdown">
@@ -244,21 +242,17 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="products-section">
         <h1>🔐 Secure Marketplace</h1>
         <p style="color: var(--gray-color); margin-bottom: 20px;">
             Shop with confidence. All transactions are encrypted and protected.
         </p>
-        
-        <!-- Search -->
+
         <div class="search-bar">
-            <input type="text" class="search-input" id="searchInput" 
-                   placeholder="Search for products...">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
             <button class="search-btn" onclick="searchProducts()">Search</button>
         </div>
-        
-        <!-- Categories -->
+
         <div class="category-filters">
             <button class="category-btn active" onclick="filterCategory('all')">All</button>
             <button class="category-btn" onclick="filterCategory('electronics')">Electronics</button>
@@ -267,29 +261,26 @@
             <button class="category-btn" onclick="filterCategory('sports')">Sports</button>
             <button class="category-btn" onclick="filterCategory('books')">Books</button>
         </div>
-        
-        <!-- Products Grid -->
+
         <div class="products-grid" id="productsGrid">
-            <!-- Products will be loaded here by JavaScript -->
             <div class="spinner"></div>
         </div>
     </main>
 
-    <!-- Cart Sidebar -->
     <div class="overlay" id="cartOverlay" onclick="toggleCart()"></div>
     <aside class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h2>🛒 Your Cart</h2>
             <button onclick="toggleCart()" style="background:none;border:none;font-size:1.5rem;cursor:pointer;">&times;</button>
         </div>
-        
+
         <div class="cart-items" id="cartItems">
             <p style="text-align:center;color:var(--gray-color);padding:40px 0;">
                 Your cart is empty.<br>
                 Start shopping securely!
             </p>
         </div>
-        
+
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
@@ -304,18 +295,15 @@
         </div>
     </aside>
 
-    <!-- Checkout Modal -->
     <div class="modal hidden" id="checkoutModal">
         <div class="modal-content" style="max-width: 500px;">
             <span class="close-btn" onclick="closeCheckout()">&times;</span>
             <h2>🔒 Secure Checkout</h2>
-            
+
             <div id="checkoutStep1">
                 <h3>Order Summary</h3>
-                <div id="checkoutSummary" style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
-                    <!-- Order items will be inserted here -->
-                </div>
-                
+                <div id="checkoutSummary" style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;"></div>
+
                 <h3>Select Payment Method</h3>
                 <div style="margin: 20px 0;">
                     <label style="display: flex; align-items: center; gap: 10px; padding: 15px; border: 2px solid var(--border-color); border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
@@ -326,7 +314,7 @@
                             <div style="font-size: 0.9rem; color: var(--gray-color);">Pay via M-Pesa STK Push</div>
                         </div>
                     </label>
-                    
+
                     <label style="display: flex; align-items: center; gap: 10px; padding: 15px; border: 2px solid var(--border-color); border-radius: 8px; margin-bottom: 10px; cursor: pointer;">
                         <input type="radio" name="payment" value="card">
                         <span style="font-size: 1.5rem;">💳</span>
@@ -335,7 +323,7 @@
                             <div style="font-size: 0.9rem; color: var(--gray-color);">Visa, Mastercard via Pesapal</div>
                         </div>
                     </label>
-                    
+
                     <label style="display: flex; align-items: center; gap: 10px; padding: 15px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
                         <input type="radio" name="payment" value="bank">
                         <span style="font-size: 1.5rem;">🏦</span>
@@ -345,12 +333,12 @@
                         </div>
                     </label>
                 </div>
-                
+
                 <button class="btn btn-primary btn-full" onclick="processPayment()">
                     Complete Secure Payment
                 </button>
             </div>
-            
+
             <div id="checkoutStep2" class="hidden" style="text-align: center; padding: 40px 0;">
                 <div class="spinner" style="width: 60px; height: 60px; border-width: 4px;"></div>
                 <p style="margin-top: 20px; color: var(--gray-color);">
@@ -358,7 +346,7 @@
                     Please check your phone for M-Pesa prompt
                 </p>
             </div>
-            
+
             <div id="checkoutStep3" class="hidden" style="text-align: center; padding: 40px 0;">
                 <div style="font-size: 4rem; margin-bottom: 20px;">✅</div>
                 <h3>Payment Successful!</h3>
@@ -373,12 +361,11 @@
         </div>
     </div>
 
-    <!-- Privacy Settings Modal -->
     <div class="modal hidden" id="privacySettingsModal">
         <div class="modal-content" style="max-width: 500px;">
             <span class="close-btn" onclick="closePrivacySettings()">&times;</span>
             <h2>🔒 Privacy Settings</h2>
-            
+
             <div style="margin: 20px 0;">
                 <h3>Data Control</h3>
                 <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0;">
@@ -390,7 +377,7 @@
                         Request Data Export
                     </button>
                 </div>
-                
+
                 <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0; border-left: 4px solid var(--warning-color);">
                     <p style="margin-bottom: 10px;"><strong>Delete My Account</strong></p>
                     <p style="font-size: 0.9rem; color: var(--gray-color); margin-bottom: 10px;">
@@ -400,17 +387,16 @@
                         Request Account Deletion
                     </button>
                 </div>
-                
+
                 <div style="margin-top: 20px;">
                     <h4>Consent History</h4>
-                    <div id="consentHistory" style="font-size: 0.9rem; color: var(--gray-color); margin-top: 10px;">
-                        <!-- Consent logs will be loaded here -->
-                    </div>
+                    <div id="consentHistory" style="font-size: 0.9rem; color: var(--gray-color); margin-top: 10px;"></div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="js/config.js"></script>
     <script src="js/shop.js"></script>
 </body>
 </html>

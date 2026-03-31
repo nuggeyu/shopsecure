@@ -11,7 +11,7 @@
             margin: 0 auto;
             padding: 20px;
         }
-        
+
         .admin-header {
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: white;
@@ -19,19 +19,19 @@
             border-radius: var(--radius-lg);
             margin-bottom: 30px;
         }
-        
+
         .admin-header h1 {
             font-size: 2rem;
             margin-bottom: 10px;
         }
-        
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
-        
+
         .stat-card {
             background: white;
             padding: 25px;
@@ -39,28 +39,28 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
-        
+
         .stat-card:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
-        
+
         .stat-icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
         }
-        
+
         .stat-value {
             font-size: 2rem;
             font-weight: bold;
             color: var(--primary-color);
         }
-        
+
         .stat-label {
             color: var(--gray-color);
             font-size: 0.95rem;
         }
-        
+
         .admin-section {
             background: white;
             border-radius: var(--radius-lg);
@@ -68,7 +68,7 @@
             margin-bottom: 30px;
             overflow: hidden;
         }
-        
+
         .section-header {
             padding: 20px 25px;
             border-bottom: 1px solid var(--border-color);
@@ -78,28 +78,28 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-        
+
         .section-header h2 {
             color: var(--primary-color);
             font-size: 1.3rem;
         }
-        
+
         .section-body {
             padding: 25px;
         }
-        
+
         .data-table {
             width: 100%;
             border-collapse: collapse;
         }
-        
+
         .data-table th,
         .data-table td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
         }
-        
+
         .data-table th {
             background: #f8f9fa;
             font-weight: 600;
@@ -108,38 +108,38 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        
+
         .data-table tr:hover {
             background: #f8f9fa;
         }
-        
+
         .status-badge {
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
         }
-        
+
         .badge-active {
             background: #d4edda;
             color: #155724;
         }
-        
+
         .badge-pending {
             background: #fff3cd;
             color: #856404;
         }
-        
+
         .badge-suspended {
             background: #f8d7da;
             color: #721c24;
         }
-        
+
         .action-btns {
             display: flex;
             gap: 8px;
         }
-        
+
         .btn-icon {
             width: 35px;
             height: 35px;
@@ -149,26 +149,26 @@
             font-size: 1rem;
             transition: var(--transition);
         }
-        
+
         .btn-view {
             background: #e3f2fd;
             color: #1976d2;
         }
-        
+
         .btn-edit {
             background: #fff3e0;
             color: #f57c00;
         }
-        
+
         .btn-delete {
             background: #ffebee;
             color: #d32f2f;
         }
-        
+
         .btn-icon:hover {
             transform: scale(1.1);
         }
-        
+
         .audit-log {
             font-family: 'Courier New', monospace;
             font-size: 0.85rem;
@@ -179,24 +179,24 @@
             max-height: 400px;
             overflow-y: auto;
         }
-        
+
         .audit-entry {
             margin-bottom: 8px;
             padding: 8px;
             border-left: 3px solid var(--secondary-color);
             padding-left: 12px;
         }
-        
+
         .audit-time {
             color: #888;
             font-size: 0.8rem;
         }
-        
+
         .audit-action {
             color: #fff;
             font-weight: bold;
         }
-        
+
         .privacy-alert {
             background: #fff3cd;
             border-left: 4px solid var(--warning-color);
@@ -207,7 +207,7 @@
             align-items: center;
             gap: 15px;
         }
-        
+
         .tabs {
             display: flex;
             gap: 5px;
@@ -215,7 +215,7 @@
             border-bottom: 2px solid var(--border-color);
             flex-wrap: wrap;
         }
-        
+
         .tab {
             padding: 12px 25px;
             cursor: pointer;
@@ -223,38 +223,38 @@
             transition: var(--transition);
             font-weight: 500;
         }
-        
+
         .tab.active {
             color: var(--primary-color);
             border-bottom-color: var(--primary-color);
         }
-        
+
         .tab:hover {
             color: var(--primary-color);
         }
-        
+
         .tab-content {
             display: none;
         }
-        
+
         .tab-content.active {
             display: block;
         }
-        
+
         .filter-bar {
             display: flex;
             gap: 15px;
             margin-bottom: 20px;
             flex-wrap: wrap;
         }
-        
+
         .filter-input {
             padding: 10px 15px;
             border: 2px solid var(--border-color);
             border-radius: var(--radius);
             font-size: 0.95rem;
         }
-        
+
         .chart-placeholder {
             height: 300px;
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
@@ -273,16 +273,16 @@
             border-radius: 8px;
             font-size: 0.95rem;
         }
-        
+
         @media (max-width: 768px) {
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .data-table {
                 font-size: 0.85rem;
             }
-            
+
             .data-table th,
             .data-table td {
                 padding: 10px;
@@ -294,7 +294,7 @@
     <header class="shop-header">
         <div class="nav-container">
             <div class="nav-logo">🔒 ShopSecure Admin</div>
-            
+
             <nav class="nav-links">
                 <a href="shop.html">View Store</a>
                 <span style="color: var(--gray-color);">|</span>
@@ -342,11 +342,11 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="privacy-alert" id="privacyAlert">
             <span style="font-size: 1.5rem;">⚠️</span>
             <div>
-                <strong>Privacy Alert:</strong> 3 users have requested data exports in the last 24 hours. 
+                <strong>Privacy Alert:</strong> 3 users have requested data exports in the last 24 hours.
                 <a href="#" onclick="showTab('privacy')" style="color: var(--primary-color); font-weight: 600;">Review requests →</a>
             </div>
         </div>
@@ -389,7 +389,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="admin-section">
                 <div class="section-header">
                     <h2>🚨 Recent Security Events</h2>
@@ -459,8 +459,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="usersTableBody">
-                        </tbody>
+                        <tbody id="usersTableBody"></tbody>
                     </table>
                 </div>
             </div>
@@ -536,8 +535,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="productsTableBody">
-                        </tbody>
+                        <tbody id="productsTableBody"></tbody>
                     </table>
                 </div>
             </div>
@@ -593,7 +591,7 @@
                     </table>
                 </div>
             </div>
-            
+
             <div class="admin-section">
                 <div class="section-header">
                     <h2>📜 Privacy Policy Versions</h2>
@@ -646,13 +644,13 @@
                     </div>
                 </div>
                 <div class="section-body">
-                    <div class="audit-log" id="auditLogContainer">
-                    </div>
+                    <div class="audit-log" id="auditLogContainer"></div>
                 </div>
             </div>
         </div>
     </main>
 
+    <script src="js/config.js"></script>
     <script src="js/admin.js"></script>
 </body>
 </html>

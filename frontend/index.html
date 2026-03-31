@@ -16,43 +16,41 @@
         </header>
 
         <main class="auth-container">
-            <!-- Login Form -->
             <div class="form-box" id="loginBox">
                 <h2>Welcome Back</h2>
                 <p class="subtitle">Secure access to your account</p>
-                
+
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="loginEmail">Email Address</label>
                         <input type="email" id="loginEmail" required placeholder="your@email.com">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="loginPassword">Password</label>
                         <input type="password" id="loginPassword" required placeholder="Enter your password">
                         <span class="toggle-password" onclick="togglePassword('loginPassword')">👁️</span>
                     </div>
-                    
+
                     <div class="form-options">
                         <label class="remember-me">
                             <input type="checkbox" id="rememberMe"> Remember me
                         </label>
                         <a href="#" class="forgot-link">Forgot password?</a>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary btn-full">Sign In Securely</button>
                 </form>
-                
+
                 <div class="auth-footer">
                     <p>Don't have an account? <a href="#" onclick="showRegister()">Create one</a></p>
                 </div>
             </div>
 
-            <!-- Registration Form (Hidden by default) -->
             <div class="form-box hidden" id="registerBox">
                 <h2>Create Account</h2>
                 <p class="subtitle">Join our secure marketplace</p>
-                
+
                 <form id="registerForm">
                     <div class="form-row">
                         <div class="form-group">
@@ -64,28 +62,28 @@
                             <input type="text" id="regLastName" required placeholder="Doe">
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="regEmail">Email Address</label>
                         <input type="email" id="regEmail" required placeholder="your@email.com">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="regPhone">Phone Number (M-Pesa)</label>
                         <input type="tel" id="regPhone" required placeholder="254712345678">
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="regPassword">Password</label>
                         <input type="password" id="regPassword" required placeholder="Min 8 characters" minlength="8">
                         <div class="password-strength" id="passwordStrength"></div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="regConfirmPassword">Confirm Password</label>
                         <input type="password" id="regConfirmPassword" required placeholder="Confirm password">
                     </div>
-                    
+
                     <div class="form-group user-type">
                         <label>I want to:</label>
                         <div class="radio-group">
@@ -97,17 +95,17 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="consent-box">
                         <label class="checkbox-label">
                             <input type="checkbox" id="privacyConsent" required>
                             I agree to the <a href="#" onclick="showPrivacyPolicy()">Privacy Policy</a> and consent to data collection as per Kenya Data Protection Act 2019.
                         </label>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary btn-full">Create Secure Account</button>
                 </form>
-                
+
                 <div class="auth-footer">
                     <p>Already have an account? <a href="#" onclick="showLogin()">Sign in</a></p>
                 </div>
@@ -119,7 +117,6 @@
         </footer>
     </div>
 
-    <!-- Privacy Policy Modal -->
     <div class="modal hidden" id="privacyModal">
         <div class="modal-content">
             <span class="close-btn" onclick="closePrivacyPolicy()">&times;</span>
@@ -150,6 +147,7 @@
         </div>
     </div>
 
+    <script src="js/config.js"></script>
     <script src="js/auth.js"></script>
 </body>
 </html>
